@@ -16,12 +16,18 @@ struct MovieCard: View {
     
     var body: some View {
         ZStack(alignment: .bottomLeading){
-            Image(movie.image).resizable().frame(width: 200, height: 150).scaledToFit()
+            Image(movie.image).resizable()
+                .scaledToFill()
+                .frame(width: 180, height: 250)
+                .clipped()
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             Text(movie.title).padding(8)
-                .frame(maxWidth: 200, alignment: .leading)
+                .frame(maxWidth: 180, alignment: .leading)
                 .foregroundStyle(.white)
-                .font(.title)
+                .font(.title3)
                 .lineLimit(1)
+                .background(.black.opacity(0.4))
+
         }
     }
 }

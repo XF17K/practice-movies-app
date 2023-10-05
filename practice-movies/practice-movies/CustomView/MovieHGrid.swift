@@ -13,8 +13,13 @@ struct MovieHGrid: View {
     
     var body: some View {
         VStack(alignment: .leading){
-            Text(title).padding(.horizontal, 8)
-                .font(.title2)
+            HStack{
+                Text(title).padding(.horizontal, 8)
+                    .font(.title2.weight(.bold))
+                Spacer()
+                Text("See All").padding(.horizontal, 8)
+                    .font(.headline.weight(.semibold)).foregroundStyle(.red)
+            }
             ScrollView(.horizontal){
                 LazyHGrid(rows: /*@START_MENU_TOKEN@*/[GridItem(.fixed(20))]/*@END_MENU_TOKEN@*/, content: {
                     //MovieCard(image: Image("movie1"), text: "Title")
@@ -30,7 +35,7 @@ struct MovieHGrid: View {
                         
                     }
                 })
-            }.frame(height: 150)
+            }.frame(height: 250)
         }
     }
 }

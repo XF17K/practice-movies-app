@@ -12,6 +12,7 @@ struct ContentView: View {
     init(){
         UITabBar.appearance().backgroundColor = UIColor(Color("TabViewBackground"))
         UITabBar.appearance().unselectedItemTintColor = .gray
+        
     }
     
     var body: some View {
@@ -30,7 +31,7 @@ struct ContentView: View {
                     Label("Favorites", systemImage: "star")
                 }
             }.tabItem {
-                Label("Favorites", systemImage: "star")
+                Label("Favorites", systemImage: "bookmark")
             }
             
             
