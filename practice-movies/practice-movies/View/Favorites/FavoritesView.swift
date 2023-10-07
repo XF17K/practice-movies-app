@@ -13,13 +13,15 @@ struct FavoritesView: View {
             Color.black.ignoresSafeArea()
             VStack{
                 Text("Favoriler")
-                List{
-                    ForEach(TestMovieData.shared.Movies, id: \.self){ movie in
-                        Text(movie.title).foregroundStyle(.black)
-                    }
-                }.padding(8)
-                .listStyle(.plain)
-                .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                /*
+                 List{
+                     ForEach(TestMovieData.shared.Movies, id: \.self){ movie in
+                         Text(movie.title).foregroundStyle(.black)
+                     }
+                 }.padding(8)
+                 .listStyle(.plain)
+                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
+                 */
             }
         }.foregroundStyle(.white)
     }

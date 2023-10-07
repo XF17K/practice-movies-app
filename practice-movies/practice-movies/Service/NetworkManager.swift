@@ -15,7 +15,7 @@ struct NetworkManager{
     func request<T: Decodable>(
         url: URL,
         method: HTTPMethod = .get,
-        parameters: [String: String]? = nil,
+        parameters: [URLQueryItem]? = nil,
         headers: [String: String]? = nil,
         completion: @escaping (Result<T, Error>) -> Void
     ){
@@ -30,13 +30,21 @@ struct NetworkManager{
         
         if let parameters = parameters{
             var components = URLComponents(string: url.absoluteString)
+            
+            for parameter in parameters{
+                print("*")
+                //print("key: \(parameter.key) value: \(parameter.value)")
+                components?.queryItems?.append(parameter)
+            }
+            
+            /*
             components?.queryItems = [
                 URLQueryItem(name: parameters.first?.key ?? "", value: parameters.first?.value ?? "")
-            ]
+            ]*/
             
-            if let url = components?.url{
-                var request = URLRequest(url: url)
-                print(url)
+            if let LastURL = components?.url{
+                request = URLRequest(url: LastURL)
+                print(request)
             }
         }
         

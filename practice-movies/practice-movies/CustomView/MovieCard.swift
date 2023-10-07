@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct MovieCard: View {
-    let movie: Movie
+    //let movie: MovieDetail
     
-    init(movie: Movie) {
-        self.movie = movie
-    }
+    //init(movie: MovieDetail) {
+    //    self.movie = movie
+   // }
     
     var body: some View {
         ZStack(alignment: .bottomLeading){
-            Image(movie.image).resizable()
+            Image("movie1").resizable()
                 .scaledToFill()
                 .frame(width: 180, height: 250)
                 .clipped()
                 .clipShape(RoundedRectangle(cornerRadius: 8))
-            Text(movie.title).padding(8)
+            Text("movie title").padding(8)
                 .frame(maxWidth: 180, alignment: .leading)
                 .foregroundStyle(.white)
                 .font(.title3)
@@ -33,5 +33,5 @@ struct MovieCard: View {
 }
 
 #Preview {
-    MovieCard(movie: TestMovieData.shared.movie)
+    MovieCard()
 }

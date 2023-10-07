@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct DetailView: View {
-    let movie: Movie
-    init(movie: Movie){
-        self.movie = movie
+    //let movie: Movie
+    init(){
+        //self.movie = movie
         let appearance = UINavigationBarAppearance()
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().standardAppearance = appearance
@@ -29,7 +29,7 @@ struct DetailView: View {
                 VStack{
                     //Text(movie.title)
                     GeometryReader{geometry in
-                        Image(movie.image).resizable()
+                        Image("movie1").resizable()
                             .scaledToFill()
                             .frame(width: geometry.size.width-20, height: 300)
                             .clipped()
@@ -106,12 +106,12 @@ struct DetailView: View {
                     Spacer()
                 }.foregroundStyle(.white)
             }
-        }.navigationTitle(movie.title)
+        }.navigationTitle("Movie Title")
         
     }
 }
 
 #Preview {
-    DetailView(movie: TestMovieData.shared.movie)
+    DetailView()
     //DetailView()
 }
