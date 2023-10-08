@@ -28,7 +28,8 @@ struct Movie: Codable, Hashable{
 import Foundation
 
 // MARK: - Movie
-struct Movie: Codable { //For Movie Detail
+struct Movie: Codable, Identifiable{
+    //For Movie Detail
     let adult: Bool?
     let backdropPath: String?
     let genreIDS: [Int]?
@@ -40,7 +41,7 @@ struct Movie: Codable { //For Movie Detail
     let popularity: Double?
     let posterPath: String?
     let releaseDate: String?
-    let revenue: Int?   //, runtime: Int?. Hasılat
+    let revenue, runtime: Int?   //, runtime: Int?. Hasılat
     let spokenLanguages: [SpokenLanguage]?
     let status, tagline, title: String?
     let video: Bool?
@@ -58,7 +59,7 @@ struct Movie: Codable { //For Movie Detail
         case overview, popularity
         case posterPath = "poster_path"
         case releaseDate = "release_date"
-        case revenue//, runtime
+        case revenue, runtime
         case spokenLanguages = "spoken_languages"
         case status, tagline, title, video
         case voteAverageImdb = "vote_average"

@@ -11,23 +11,26 @@ protocol HomeViewProtocol{
     func getPopularMovies()
 }
 
-class HomeViewModel: ObservableObject{
+@MainActor class HomeViewModel: ObservableObject{
     
-    @Published var popularMovies: [MovieList] = []//TestMovieData.shared.Movies
-    @Published var text: String = "test123"
+    @Published var popularMovies: MovieList? //TestMovieData.shared.Movies
+    
     
     func getPopularMovies(){
         let parameters: [URLQueryItem] = [
             URLQueryItem(name : "api_key", value: NetworkHelper.shared.apiKey)
         ]
-        NetworkManager.shared.request(url: Path.popular.getPath()!, parameters: parameters) { (result: Result<MovieList, Error>) in
-            print("Network started!")
-            switch result{
-            case .success(let movie): print(movie)
-            
-            case .failure(let error): print(error)
+        
+        DispatchQueue.main.async{
+            NetworkManager.shared.request(url: Path.popular.getPath()!, parameters: parameters) { (result: Result<MovieList, Error>) in
+                print("Network started!")
+                switch result{
+                case .success(let movieList): self.popularMovies = movieList
+                case .failure(let error): print(error)
+                }
+                print("Network finished!")
             }
-            print("Network finished!")
         }
+        
     }
 }

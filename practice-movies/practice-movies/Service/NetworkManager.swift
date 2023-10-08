@@ -29,27 +29,19 @@ struct NetworkManager{
         }
         
         if let parameters = parameters{
-            var components = URLComponents(string: url.absoluteString)
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            var queryItems = [URLQueryItem]()
             
             for parameter in parameters{
-                print("*")
-                //print("key: \(parameter.key) value: \(parameter.value)")
-                components?.queryItems?.append(parameter)
+                queryItems.append(parameter)
             }
-            
-            /*
-            components?.queryItems = [
-                URLQueryItem(name: parameters.first?.key ?? "", value: parameters.first?.value ?? "")
-            ]*/
+            components?.queryItems = queryItems
             
             if let LastURL = components?.url{
                 request = URLRequest(url: LastURL)
-                print(request)
             }
         }
         
-        
-     
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error{
                 completion(.failure(error))

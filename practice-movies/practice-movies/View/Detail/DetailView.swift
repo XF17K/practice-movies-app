@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct DetailView: View {
-    //let movie: Movie
+    let movie: Movie? = nil
     init(){
         //self.movie = movie
         let appearance = UINavigationBarAppearance()
@@ -29,16 +30,25 @@ struct DetailView: View {
                 VStack{
                     //Text(movie.title)
                     GeometryReader{geometry in
-                        Image("movie1").resizable()
-                            .scaledToFill()
-                            .frame(width: geometry.size.width-20, height: 300)
-                            .clipped()
-                            .clipShape(RoundedRectangle(cornerRadius: 25))
-                            .padding(10)
+                        if let imagePath = movie?.posterPath{
+                            KFImage(Path.imageWidth500.getImage(imagePath: movie?.backdropPath ?? "")).resizable()
+                                .scaledToFill()
+                                .frame(width: geometry.size.width-20, height: 300)
+                                .clipped()
+                                .clipShape(RoundedRectangle(cornerRadius: 25))
+                                .padding(10)
+                        }else{
+                            Image("movie1").resizable()
+                                .scaledToFill()
+                                .frame(width: geometry.size.width-20, height: 300)
+                                .clipped()
+                                .clipShape(RoundedRectangle(cornerRadius: 25))
+                                .padding(10)
+                        }
                     }.frame(height: 310)
                     HStack{
-                        Text("2023 |")
-                        Text("160 Minutes |")
+                        Text(DateFormatHelper.shared.getYear(date: movie?.releaseDate ?? "") ?? "")
+                        Text(DateFormatHelper.shared.getRunTime(runTime: movie?.runtime ?? 0))
                         Text("Action")
                     }.foregroundStyle(.gray).font(.headline.weight(.semibold))
                         .padding(.vertical, 8)
@@ -46,7 +56,7 @@ struct DetailView: View {
                         Image(systemName: "star.fill")
                             .foregroundStyle(.orange)
                             .font(.title2)
-                        Text("4.5").font(.headline.weight(.semibold))
+                        Text(NumberHelper.shared.doubleFormat(number: movie?.voteAverageImdb ?? 0.0)).font(.headline.weight(.semibold))
                     }.padding(.vertical, 8)
                     HStack{
                         Button{

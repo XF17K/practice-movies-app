@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct MovieCard: View {
-    //let movie: MovieDetail
+    let movie: Movie?
     
     //init(movie: MovieDetail) {
     //    self.movie = movie
@@ -16,12 +17,21 @@ struct MovieCard: View {
     
     var body: some View {
         ZStack(alignment: .bottomLeading){
-            Image("movie1").resizable()
-                .scaledToFill()
-                .frame(width: 180, height: 250)
-                .clipped()
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-            Text("movie title").padding(8)
+            if let imagePath = movie?.backdropPath{
+                KFImage(Path.imageWidth500.getImage(imagePath: movie?.backdropPath ?? "")).resizable()
+                    .scaledToFill()
+                    .frame(width: 180, height: 250)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }else{
+                Image("movie1").resizable()
+                    .scaledToFill()
+                    .frame(width: 180, height: 250)
+                    .clipped()
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+            }
+            
+            Text(movie?.title ?? "Movie Title").padding(8)
                 .frame(maxWidth: 180, alignment: .leading)
                 .foregroundStyle(.white)
                 .font(.title3)
@@ -33,5 +43,5 @@ struct MovieCard: View {
 }
 
 #Preview {
-    MovieCard()
+    MovieCard(movie: nil)
 }

@@ -30,15 +30,15 @@ struct HomeView: View{
                 //
                 ScrollView(.vertical){
                     
-                    MovieHGrid(title: "Popular")
+                    MovieHGrid(title: "Popular", movieList: viewModel.popularMovies)
                     Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "New")
+                    MovieHGrid(title: "New", movieList: viewModel.popularMovies)
                     Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "Recommend")
+                    MovieHGrid(title: "Recommend", movieList: viewModel.popularMovies)
                     Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "Action")
+                    MovieHGrid(title: "Action", movieList: viewModel.popularMovies)
                     Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "Romantic")
+                    MovieHGrid(title: "Romantic", movieList: viewModel.popularMovies)
                     
                     /*
                     MovieHGrid(title: "Romantic", movieList: viewModel.popularMovies)*/

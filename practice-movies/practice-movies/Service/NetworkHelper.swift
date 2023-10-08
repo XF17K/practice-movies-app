@@ -25,6 +25,8 @@ enum Path: String{
     case movie_search = "/search/movie" //query params: api_key, query: String//searh word
     case movie_search_with_genres = "/discover/movie" //query params: api_key, sort_by="popularity.desc", with_genres=28, vote_count.gte=1000, vote_average=7 (imdb)
     //case movie_credits = "/movie/{movie_id}/credits"
+    case imageWidth500 = "/w500"
+    case imageOriginal = "/original"
     
     func getPath() -> URL?{
         let fullURL = NetworkHelper.shared.baseURL?.appendingPathComponent(self.rawValue)
@@ -44,6 +46,13 @@ enum Path: String{
         
         return fullURL ?? nil
     }
+    
+    func getImage(imagePath: String, isOriginalImage: Bool? = false) -> URL?{ //only use from .imageWidth500, imageOriginal
+        let fullURL = NetworkHelper.shared.tmdbImageURL?.appendingPathComponent(self.rawValue+"/"+imagePath)
+        //Returns like: ...imageW500/xyz.jpg...
+        
+        return fullURL ?? nil
+    }
 }
 
 struct NetworkHelper{
@@ -53,5 +62,5 @@ struct NetworkHelper{
     let baseURL = URL(string: "https://api.themoviedb.org/3")
     let apiKey: String = "053028d9b214f8676f497b434cd80ddd"
     let youtubeWatchURL = URL(string: "https://www.youtube.com/watch")      //query params: v. Example: ...watch/v={video_key}...
-    
+    let tmdbImageURL = URL(string: "https://image.tmdb.org/t/p")
 }
