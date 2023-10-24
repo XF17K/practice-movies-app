@@ -38,7 +38,7 @@ class DateFormatHelper{
             return("\(type == .hour ? "" : "0 \(singular)")")
         }
         
-        return "(\(value) \(value == 1 ? singular : plural)"
+        return ("\(value) \(value == 1 ? singular : plural)")
     }
     
     fileprivate enum TimeType{

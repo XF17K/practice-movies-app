@@ -26,9 +26,10 @@ struct MovieHGrid: View {
                     if movieList != nil, let results = movieList?.results{
                         
                         ForEach(movieList!.results!){ movie in
-                            NavigationLink(destination: DetailView()){
-                                MovieCard(movie: movie)
-                            }
+                            MovieCard(movie: movie)
+                            //NavigationLink(destination: DetailView(movie: movie)){
+                            //    MovieCard(movie: movie)
+                            //}
                         }
                         /*
                         ForEach(movieList.results!, id: ) { movie in

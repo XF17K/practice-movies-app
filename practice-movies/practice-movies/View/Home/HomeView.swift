@@ -29,16 +29,13 @@ struct HomeView: View{
                 
                 //
                 ScrollView(.vertical){
-                    
+                    MovieHGrid(title: "New", movieList: viewModel.newMovies)
+                    Divider().background(.gray).padding(.horizontal, 16)
                     MovieHGrid(title: "Popular", movieList: viewModel.popularMovies)
                     Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "New", movieList: viewModel.popularMovies)
+                    MovieHGrid(title: "Upcoming", movieList: viewModel.upcomingMovies)
                     Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "Recommend", movieList: viewModel.popularMovies)
-                    Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "Action", movieList: viewModel.popularMovies)
-                    Divider().background(.gray).padding(.horizontal, 16)
-                    MovieHGrid(title: "Romantic", movieList: viewModel.popularMovies)
+                    MovieHGrid(title: "Top", movieList: viewModel.topMovies)
                     
                     /*
                     MovieHGrid(title: "Romantic", movieList: viewModel.popularMovies)*/
@@ -53,6 +50,9 @@ struct HomeView: View{
             .onAppear(){
                 print("1")
                 viewModel.getPopularMovies()
+                viewModel.getNewMovies()
+                viewModel.getUpcomingMovies()
+                viewModel.getTopMovies()
             }
     }
 }

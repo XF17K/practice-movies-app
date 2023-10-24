@@ -8,25 +8,51 @@
 import SwiftUI
 
 struct FavoritesView: View {
+    @State private var favoriteMovies: [Movie]?
+    
+    
+    
     var body: some View {
         ZStack{
             Color.black.ignoresSafeArea()
-            VStack{
-                Text("Favoriler")
-                /*
-                 List{
-                     ForEach(TestMovieData.shared.Movies, id: \.self){ movie in
-                         Text(movie.title).foregroundStyle(.black)
-                     }
-                 }.padding(8)
-                 .listStyle(.plain)
-                 .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
-                 */
-            }
-        }.foregroundStyle(.white)
+            
+            VStack(alignment: .leading){
+                Text("Favorites").padding(.horizontal, 8)
+                    .font(.title.weight(.bold))
+                
+                //ScrollView(.vertical){
+                    //VStack(spacing: 16){
+                        if let movies = favoriteMovies{
+                            NavigationView{
+                                List{
+                                    ForEach(movies){ movie in
+                                        MovieSearchCard(movie: movie)
+                                    }.onDelete(perform: deleteMovie)
+                                }.listStyle(.plain)
+                                    .background(Color.black)
+                                    .onAppear{
+                                        UITableView.appearance().backgroundColor = .clear
+                                    }
+                            }.navigationBarItems(trailing: EditButton())
+                        }
+                    //}
+                    
+                    Spacer()
+                //}
+            }.foregroundStyle(.white)
+                .onAppear{
+                    favoriteMovies = AppUserDefaults.shared.getFavoriteMovies()
+                }
+        }
+    }
+    func deleteMovie(at offsets: IndexSet){
+        favoriteMovies?.remove(atOffsets: offsets)
+        //AppUserDefaultsdan da sil, güncelle
     }
 }
+    
+    #Preview {
+        FavoritesView()
+    }
+    
 
-#Preview {
-    FavoritesView()
-}

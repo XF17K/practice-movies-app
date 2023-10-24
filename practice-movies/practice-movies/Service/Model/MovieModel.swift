@@ -68,7 +68,7 @@ struct Movie: Codable, Identifiable{
 }
 
 // MARK: - Genre
-struct Genre: Codable {
+struct Genre: Codable, Identifiable {
     let id: Int?        // "28"
     let name: String?   // "Action"
 }
@@ -104,9 +104,10 @@ struct Credits: Codable {
 }
 
 // MARK: - Cast
-struct Cast: Codable {
+struct Cast: Codable, Identifiable {
     let adult: Bool?
     let gender, id: Int?
+    let department: String
     let name, originalName: String?
     let popularity: Double?
     let profilePath: String?
@@ -117,6 +118,7 @@ struct Cast: Codable {
 
     enum CodingKeys: String, CodingKey {
         case adult, gender, id
+        case department = "known_for_department"
         case name
         case originalName = "original_name"
         case popularity
@@ -125,5 +127,31 @@ struct Cast: Codable {
         case character
         case creditID = "credit_id"
         case order, job
+    }
+}
+
+// MARK: - MovieVideos
+struct MovieVideos: Codable {
+    let id: Int?
+    let results: [ResultVideo]?
+}
+
+// MARK: - Result
+struct ResultVideo: Codable {
+    let key: String?
+
+    enum CodingKeys: String, CodingKey {
+        case key
+    }
+}
+
+// MARK: - SearchResult
+struct SearchResult: Codable{
+    let page: Int?
+    let results: [Movie]?
+    
+    enum CodingKeys: String, CodingKey{
+        case page
+        case results
     }
 }
