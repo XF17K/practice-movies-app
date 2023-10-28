@@ -37,6 +37,18 @@ struct HomeView: View{
                     Divider().background(.gray).padding(.horizontal, 16)
                     MovieHGrid(title: "Top", movieList: viewModel.topMovies)
                     
+                    Divider().background(.gray).padding(.horizontal, 16)
+                    MovieHGrid(title: "Adventure", movieList: viewModel.adventureMovies)
+                    Divider().background(.gray).padding(.horizontal, 16)
+                    MovieHGrid(title: "Action", movieList: viewModel.actionMovies)
+                    Divider().background(.gray).padding(.horizontal, 16)
+                    MovieHGrid(title: "Comedy", movieList: viewModel.comedyMovies)
+                    Divider().background(.gray).padding(.horizontal, 16)
+                    MovieHGrid(title: "Romance", movieList: viewModel.romanceMovies)
+                    Divider().background(.gray).padding(.horizontal, 16)
+                    MovieHGrid(title: "Horror", movieList: viewModel.horrorMovies)
+                    Divider().background(.gray).padding(.horizontal, 16)
+                    MovieHGrid(title: "Fantasy", movieList: viewModel.fantasyMovies)
                     /*
                     MovieHGrid(title: "Romantic", movieList: viewModel.popularMovies)*/
                 }
@@ -53,6 +65,13 @@ struct HomeView: View{
                 viewModel.getNewMovies()
                 viewModel.getUpcomingMovies()
                 viewModel.getTopMovies()
+                
+                viewModel.getMoviesByGenre(genre: .action)
+                viewModel.getMoviesByGenre(genre: .adventure)
+                viewModel.getMoviesByGenre(genre: .comedy)
+                viewModel.getMoviesByGenre(genre: .fantasy)
+                viewModel.getMoviesByGenre(genre: .horror)
+                viewModel.getMoviesByGenre(genre: .romance)
             }
     }
 }

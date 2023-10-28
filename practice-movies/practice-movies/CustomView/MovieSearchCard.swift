@@ -35,7 +35,7 @@ struct MovieSearchCard: View {
                     .background(.black.opacity(0.4))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
             }
-        }
+        }.listRowBackground(Color.clear)
     }
 }
 

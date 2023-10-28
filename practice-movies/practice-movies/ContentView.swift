@@ -10,8 +10,13 @@ import SwiftUI
 struct ContentView: View {
     
     init(){
-        UITabBar.appearance().backgroundColor = UIColor(Color("TabViewBackground"))
-        UITabBar.appearance().unselectedItemTintColor = .gray
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        //appearance.backgroundColor = UIColor(Color("TabViewBackground"))
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().standardAppearance = appearance
+        //UITabBar.appearance().backgroundColor = UIColor(Color("TabViewBackground"))
+        //UITabBar.appearance().unselectedItemTintColor = .gray
         
     }
     

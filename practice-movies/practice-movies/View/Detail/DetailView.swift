@@ -13,6 +13,8 @@ struct DetailView: View {
     @State var movie: Movie?
     @State var actors: [Cast] = []
     
+    @State private var showingAlert = false
+    
     init(movie: Movie?){
         _movie = State(initialValue: movie)
         
@@ -134,11 +136,15 @@ struct DetailView: View {
                         Button{
                             if movie != nil {
                                 AppUserDefaults.shared.addFoviteMovie(movie: movie!)
+                                self.showingAlert.toggle()
                             }
                         }label: {
                             Image(systemName: "plus")
                         }.padding(8)
                             .background(.orange).clipShape(Capsule())
+                            .alert(isPresented: $showingAlert){ () -> Alert in
+                                Alert(title: Text("Favorites"), message: Text("Added to Favorites."))
+                            }
                     }
                     HStack{
                         Text("Overview")
@@ -181,6 +187,7 @@ struct DetailView: View {
             }
         
     }
+    
 }
 
 #Preview {

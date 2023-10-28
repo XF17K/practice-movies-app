@@ -47,7 +47,16 @@ class AppUserDefaults{
         return favoriteMovies
     }
     
-    private func removeFavoriteMovies(movieId: Int?){
+    func removeFavoriteMovies(index: Int?){ //movieId: Int?,
+        
+        if index != nil{
+            favoriteMovies.remove(at: index!)
+            saveFavoriteMovies()
+        }else{
+            UserDefaults.standard.removeObject(forKey: "FavoriteMovies")
+        }
+        
+        /*
         if movieId != nil{
             if let index = favoriteMovies.firstIndex(where: { $0.id == movieId}){
                 favoriteMovies.remove(at: index)
@@ -56,5 +65,6 @@ class AppUserDefaults{
         }else{
             UserDefaults.standard.removeObject(forKey: "FavoriteMovies")
         }
+         */
     }
 }

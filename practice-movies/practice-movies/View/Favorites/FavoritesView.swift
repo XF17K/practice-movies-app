@@ -10,6 +10,10 @@ import SwiftUI
 struct FavoritesView: View {
     @State private var favoriteMovies: [Movie]?
     
+    init(){
+        
+        
+    }
     
     
     var body: some View {
@@ -28,25 +32,30 @@ struct FavoritesView: View {
                                     ForEach(movies){ movie in
                                         MovieSearchCard(movie: movie)
                                     }.onDelete(perform: deleteMovie)
-                                }.listStyle(.plain)
+                                }.listStyle(PlainListStyle())
                                     .background(Color.black)
                                     .onAppear{
-                                        UITableView.appearance().backgroundColor = .clear
+                                        //UITableView.appearance().backgroundColor = .clear
+                                        UICollectionView.appearance().backgroundColor = .clear
                                     }
-                            }.navigationBarItems(trailing: EditButton())
+                            }//.navigationBarItems(trailing: EditButton())
                         }
                     //}
                     
                     Spacer()
                 //}
             }.foregroundStyle(.white)
+                .background(Color.black)
                 .onAppear{
                     favoriteMovies = AppUserDefaults.shared.getFavoriteMovies()
                 }
-        }
+        }.background(Color.black)
     }
     func deleteMovie(at offsets: IndexSet){
         favoriteMovies?.remove(atOffsets: offsets)
+        let index: Int = offsets.map { $0 }[0]
+        print(index)
+        AppUserDefaults.shared.removeFavoriteMovies(index: index)
         //AppUserDefaultsdan da sil, güncelle
     }
 }
