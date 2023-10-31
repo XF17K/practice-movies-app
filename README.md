@@ -11,7 +11,7 @@ In addition, detail view includes overview and actors of movie.
 - User can add movies to favorites. Stored in UserDefaults.
 - Project includes a generic network layer with URLSession.
 
-## Keyworkds
+## Keywords
 - SwiftUI
 - MVVM
 - TMDB API
